@@ -1,5 +1,6 @@
 package com.terminal.manage.services.impl;
 
+import cn.hutool.crypto.digest.MD5;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.terminal.manage.base.enums.IsDeleted;
@@ -36,7 +37,7 @@ public class UserServiceImpl implements UserService {
             return Optional.empty();
         }
         criteria.andEqualTo("loginName",loginName)
-                .andEqualTo("password",password);
+                .andEqualTo("password", MD5.create().digestHex(password).toUpperCase());
         User user = userMapper.selectOneByExample(example);
         return Optional.of(user);
     }
@@ -76,7 +77,7 @@ public class UserServiceImpl implements UserService {
                 .andEqualTo("status",user.getStatus())
                 .andEqualTo("type",user.getType())
                 .andEqualTo("isDeleted", IsDeleted.NO.code)
-                .andLike("name","%"+user.getUserName()+"%");
+                .andLike("realName","%"+user.getRealName()+"%");
         PageHelper.startPage(page,pageSize);
         List<User> users = userMapper.selectByExample(example);
         PageInfo<User> userPageInfo = new PageInfo<>(users);

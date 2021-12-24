@@ -1,6 +1,7 @@
 package com.terminal.manage.base.response;
 
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.function.Supplier;
 
@@ -8,6 +9,7 @@ import java.util.function.Supplier;
  * @author Jyt
  * @date 2021/9/29
  */
+@Slf4j
 @Setter
 @Getter
 @Builder
@@ -38,8 +40,9 @@ public class Response<T> {
             resp.setMsg("");
             resp.setSuccess(true);
         }catch (Exception e){
+            log.info(e.getMessage(),e);
             resp.setCode("400000");
-            resp.setMsg("");
+            resp.setMsg(e.getMessage());
             resp.setSuccess(false);
         }
         return resp;

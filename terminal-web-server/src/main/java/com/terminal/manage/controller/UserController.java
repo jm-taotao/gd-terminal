@@ -4,8 +4,10 @@ import com.github.pagehelper.PageInfo;
 import com.terminal.manage.base.response.Response;
 import com.terminal.manage.model.User;
 import com.terminal.manage.services.UserService;
-import io.swagger.annotations.*;
-import io.swagger.models.HttpMethod;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +25,20 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+
+    @RequestMapping("login")
+    @ApiOperation(value = "登录", notes = "登录",response = User.class,httpMethod = "POST")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "account",required = true,paramType = "String"),
+            @ApiImplicitParam(name = "password",required = true,paramType = "String"),
+    })
+    public Response<User> login(String account, String password){
+        return Response.doResponse(()->{
+            Optional<User> optionalUsers = userService.login(account,password);
+            return optionalUsers.orElse(null);
+        });
+    }
 
     @RequestMapping("list")
     @ApiOperation(value = "用户列表", notes = "用户列表",response = User.class,httpMethod = "POST")

@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,6 +25,7 @@ import java.time.LocalDateTime;
 public class Menu {
 
     @Id
+    @Column(insertable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty("菜单id")
     private Long id;

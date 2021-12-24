@@ -24,7 +24,7 @@
         <lombok-version>1.18.16</lombok-version>
         <mysql-version>8.0.23</mysql-version>
         <spring-mybatis-version>2.1.0</spring-mybatis-version>
-        <spring-druid-version>1.2.4</spring-druid-version>
+        <spring-druid-version>1.2.8</spring-druid-version>
         <hutool-version>5.3.10</hutool-version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -58,6 +58,26 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+                <version>${spring-clod-netflix-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+                <version>${spring-clod-netflix-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-netflix-ribbon</artifactId>
+                <version>${spring-clod-netflix-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-netflix-hystrix</artifactId>
+                <version>${spring-clod-netflix-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
                 <version>${spring-clod-netflix-version}</version>
             </dependency>
@@ -68,7 +88,22 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-netflix-eureka-zuul</artifactId>
+                <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+                <version>${spring-clod-netflix-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+                <version>${spring-clod-netflix-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+                <version>${spring-clod-netflix-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
                 <version>${spring-clod-netflix-version}</version>
             </dependency>
             <dependency>

@@ -1,9 +1,11 @@
 package com.terminal.manage.model;
 
+import cn.hutool.crypto.digest.MD5;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 /**
@@ -15,23 +17,28 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel("用户基本信息")
+@Table(name = "gd_user")
 public class User {
 
+    @Id
+    @Column(insertable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ApiModelProperty(name = "oid",notes = "运营商ID")
+    private Long oid;
 
     @ApiModelProperty(name = "loginName",notes = "用户登录名")
     private String loginName;
 
-    @ApiModelProperty(name = "userName",notes = "用户姓名")
-    private String userName;
-
+    @ApiModelProperty(name = "password",notes = "登录密码")
     private String password;
+
+    @ApiModelProperty(name = "realName",notes = "用户姓名")
+    private String realName;
 
     @ApiModelProperty(name = "mobile",notes = "用户手机号")
     private String mobile;
-
-    @ApiModelProperty(name = "sex",notes = "用户性别")
-    private Integer sex;
 
     @ApiModelProperty(name = "type",notes = "类型")
     private Integer type;
@@ -45,5 +52,4 @@ public class User {
     private LocalDateTime updateTime;
 
     private LocalDateTime createTime;
-
 }

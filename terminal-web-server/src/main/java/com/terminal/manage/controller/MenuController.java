@@ -23,7 +23,7 @@ public class MenuController {
     private MenuService menuService;
 
 
-    @RequestMapping("list")
+    @RequestMapping("tree")
     public Response<List<Menu>> list(){
         return null;
     }
