@@ -1,2 +1,0 @@
-# gd-terminal
-terminal manage

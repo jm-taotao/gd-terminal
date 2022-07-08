@@ -1,0 +1,23 @@
+package com.terminal.manage.base.enums;
+
+/**
+ * @author TAO
+ * @date 2022/7/7 / 16:19
+ */
+public enum Constants {
+
+    LOGIN_SUCCESS("10000","登录成功"),
+    LOGIN_FAILED("10001","登录失败"),
+    LOGIN_FAILED_NOT_EXIST("10002","用户不存在"),
+    LOGIN_FAILED_PASSWORD_MISTAKE("10003","密码错误"),
+    GET_MENU_FAILED("10004","获取菜单异常"),
+    ;
+
+    public final String code;
+    public final String msg;
+
+    Constants(String code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+}
