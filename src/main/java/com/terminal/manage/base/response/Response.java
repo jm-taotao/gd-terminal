@@ -46,6 +46,28 @@ public class Response<T> {
         return resp;
     }
 
+
+    /**
+     * Factory method for return
+     * @param <T>
+     * @return
+     */
+    public static <T> Response<T> doResponse(T data){
+        Response<T> resp = new Response<>();
+        try {
+            resp.setData(data);
+            resp.setCode("100000");
+            resp.setMsg("");
+            resp.setSuccess(true);
+        }catch (Exception e){
+            log.info(e.getMessage(),e);
+            resp.setCode("400000");
+            resp.setMsg(e.getMessage());
+            resp.setSuccess(false);
+        }
+        return resp;
+    }
+
     public T getData() {
         return data;
     }

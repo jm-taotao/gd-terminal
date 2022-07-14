@@ -28,11 +28,18 @@ public class Menu extends Base implements Serializable {
     @ApiModelProperty("父级菜单id")
     private Long pid;
 
+    @ApiModelProperty("父级菜单名称")
+    @Transient
+    private String pname;
+
     @ApiModelProperty("菜单名称")
     private String name;
 
     @ApiModelProperty("菜单序号")
     private Integer sno;
+
+    @ApiModelProperty("菜单图标")
+    private String icon;
 
     @ApiModelProperty("菜单地址")
     private String url;
@@ -124,5 +131,21 @@ public class Menu extends Base implements Serializable {
 
     public void setSno(Integer sno) {
         this.sno = sno;
+    }
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }

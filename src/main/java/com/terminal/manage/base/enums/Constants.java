@@ -11,6 +11,9 @@ public enum Constants {
     LOGIN_FAILED_NOT_EXIST("10002","用户不存在"),
     LOGIN_FAILED_PASSWORD_MISTAKE("10003","密码错误"),
     GET_MENU_FAILED("10004","获取菜单异常"),
+    USER_PASSWORD_ISEMPTY("10005","用户密码不能为空"),
+    USER_EXIST("10006","用户名已存在"),
+    MENU_EXIST("10007","菜单已存在"),
     ;
 
     public final String code;

@@ -54,7 +54,8 @@ public class UserController {
         });
     }
 
-
+    @ApiOperation(value = "新增用户", notes = "新增用户",response = Boolean.class,httpMethod = "POST")
+    @ApiImplicitParam(name = "user",required = true,paramType = "User")
     @RequestMapping("add")
     public Response<Boolean> add(User user){
         return Response.doResponse(()->{

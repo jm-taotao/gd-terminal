@@ -1,16 +1,25 @@
 package com.terminal.manage.services.impl;
 
+import com.terminal.manage.base.enums.Constants;
 import com.terminal.manage.base.enums.IsDeleted;
+import com.terminal.manage.base.excption.BizException;
 import com.terminal.manage.mapper.MenuMapper;
 import com.terminal.manage.model.Menu;
 import com.terminal.manage.services.MenuService;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
+import tk.mybatis.mapper.entity.EntityColumn;
 import tk.mybatis.mapper.entity.Example;
 
+import java.text.DateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
 
@@ -59,14 +68,36 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public Optional<Boolean> addMenu(Menu menu) {
+        menu.setIsDeleted(IsDeleted.NO.code);
+        menu.setCreateTime(LocalDateTime.now());
+        menu.setUpdateTime(LocalDateTime.now());
         Boolean flag = menuMapper.insertSelective(menu) > 0;
         return Optional.of(flag);
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Optional<Boolean> updateMenu(Menu menu) {
         if (Objects.isNull(menu.getId())){
             return Optional.of(false);
+        }
+        Example example = new Example(Menu.class);
+        Example.Criteria criteria = example.createCriteria();
+        if (!StringUtils.isEmpty(menu.getName())){
+            criteria.andEqualTo("name",menu.getName());
+            Menu menuOld = menuMapper.selectOneByExample(example);
+            if (Objects.nonNull(menuOld) && !menu.getId().equals(menuOld.getId())){
+                throw new BizException(Constants.MENU_EXIST);
+            }
+        }
+        Menu menuOld = menuMapper.selectByPrimaryKey(menu.getId());
+        //后移
+        if (menu.getSno() > menuOld.getSno()){
+            menuMapper.updateMenuSnoUp(menu.getId(),menu.getSno(),menuOld.getSno());
+        }
+        //前移
+        if (menu.getSno() < menuOld.getSno()){
+            menuMapper.updateMenuSnoDown(menu.getId(),menu.getSno(),menuOld.getSno());
         }
         Boolean flag = menuMapper.updateByPrimaryKeySelective(menu) > 0;
         return Optional.of(flag);
@@ -77,26 +108,54 @@ public class MenuServiceImpl implements MenuService {
         Menu menu = new Menu();
         menu.setId(menuId);
         menu.setIsDeleted("YES");
-        Boolean flag = menuMapper.updateByPrimaryKeySelective(menu) > 0;
+        menu.setUpdateTime(LocalDateTime.now());
+
+        Example example = new Example(Menu.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("id",menu.getId())
+                .andEqualTo("isDeleted",IsDeleted.NO.code);
+        Boolean flag = menuMapper.updateByExampleSelective(menu,example) > 0;
         return Optional.of(flag);
     }
 
 
-    public Optional<List<Menu>> getMenuTree(){
-        List<Menu> menuList = menuMapper.selectAll();
+    public Optional<List<Menu>> getMenuTree(Menu menu){
+        Example example = new Example(Menu.class,false,false);
+        Example.Criteria criteria = example.createCriteria();
+        if (!StringUtils.isEmpty(menu.getName())){
+            criteria.andLike("name","%" + menu.getName() + "%");
+        }
+        example.orderBy("sno");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        List<Menu> menuList = menuMapper.selectByExample(example).stream().peek(v->{
+            if (Objects.nonNull(v.getCreateTime())){
+                v.setCreateTimeStr(dtf.format(v.getCreateTime()));
+            }
+            if (Objects.nonNull(v.getUpdateTime())){
+                v.setCreateTimeStr(dtf.format(v.getUpdateTime()));
+            }
+        }).collect(Collectors.toList());
         Map<Long, List<Menu>> menuMap = menuList.stream().collect(groupingBy(Menu::getPid));
-        List<Menu> parentMenus = menuMap.get(0L);
-        getChildren(parentMenus,menuMap);
+        if (CollectionUtils.isEmpty(menuMap)){
+            return Optional.empty();
+        }
+        Map<Long, List<Menu>> menuNameMap = menuList.stream().collect(groupingBy(Menu::getId));
+        OptionalLong min = menuMap.keySet().stream().mapToLong(Long::longValue).min();
+        List<Menu> parentMenus = menuMap.get(min.getAsLong());
+        getChildren(parentMenus,menuMap,menuNameMap);
         return Optional.of(parentMenus);
     }
 
-    private void getChildren(List<Menu> parentMenus,Map<Long, List<Menu>> menuMap){
+    private void getChildren(List<Menu> parentMenus,Map<Long, List<Menu>> menuMap,Map<Long, List<Menu>> menuNameMap){
         parentMenus.forEach(v->{
+            if (menuNameMap.containsKey(v.getPid())){
+                v.setPname(menuNameMap.get(v.getPid()).get(0).getName());
+            }
             if (menuMap.containsKey(v.getId())){
                 List<Menu> children = menuMap.get(v.getId());
                 children.sort(Comparator.comparing(Menu::getSno));
                 v.setChildren(children);
-                getChildren(children,menuMap);
+                getChildren(children,menuMap,menuNameMap);
             }else {
                 v.setChildren(null);
             }

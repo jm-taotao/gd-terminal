@@ -1,11 +1,19 @@
 package com.terminal.manage.controller;
 
+import com.terminal.manage.base.config.ConfigModel;
 import com.terminal.manage.base.enums.Constants;
 import com.terminal.manage.base.excption.BizException;
 import com.terminal.manage.base.response.Response;
 import com.terminal.manage.model.Menu;
+import com.terminal.manage.model.User;
 import com.terminal.manage.services.MenuService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,15 +30,26 @@ import java.util.Optional;
 @RequestMapping("/menu/")
 public class MenuController {
 
+    @Autowired
+    private RedisTemplate<Object,Object> redisTemplate;
 
     @Autowired
     private MenuService menuService;
 
 
+    @SuppressWarnings("unchecked")
     @RequestMapping("tree")
-    public Response<List<Menu>> list(){
-        Optional<List<Menu>> menuTree = menuService.getMenuTree();
+    @ApiOperation(value = "获取树形菜单", notes = "获取树形菜单",response = User.class,httpMethod = "POST")
+    public Response<List<Menu>> list(Menu menu){
+
+        String menuKey = ConfigModel.KEY_PREFIX+"menu";
+        List<Menu> arrays = (List<Menu>) redisTemplate.opsForValue().get(menuKey);
+        if (!CollectionUtils.isEmpty(arrays)){
+            Response.doResponse(arrays);
+        }
         return Response.doResponse(()->{
+            Optional<List<Menu>> menuTree = menuService.getMenuTree(menu);
+            menuTree.ifPresent(menuList -> redisTemplate.opsForValue().set(menuKey, menuList));
             return menuTree.orElseThrow(()->{
                 return new BizException(Constants.GET_MENU_FAILED);
             });

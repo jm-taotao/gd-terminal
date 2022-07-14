@@ -10,7 +10,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ConfigModel {
 
+    public static String KEY_PREFIX = "gd:terminal:";
+
     public static String TOKEN_PREFIX = "gd:terminal:user:";
+
 
     public static Long TOKEN_TIMEOUT = 1000*60*60*5L;
 

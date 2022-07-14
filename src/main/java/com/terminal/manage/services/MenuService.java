@@ -59,6 +59,6 @@ public interface MenuService {
      * Get all Menu to together Tree
      * @return MenuTree
      */
-    Optional<List<Menu>>  getMenuTree();
+    Optional<List<Menu>>  getMenuTree(Menu menu);
 
 }

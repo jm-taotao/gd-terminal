@@ -5,53 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e28fb587-a983-44cf-a025-e7a4fde6f9b9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/RedisService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-common-server/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-common-server/src/main/java/com/terminal/manage/GDCommonServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-common-server/src/main/java/com/terminal/manage/base/annotion/Promise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/base/annotion/Promise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-common-server/src/main/java/com/terminal/manage/base/enums/IsDeleted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/base/enums/IsDeleted.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-common-server/src/main/java/com/terminal/manage/base/mapper/BaseMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/base/mapper/BaseMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-common-server/src/main/java/com/terminal/manage/base/response/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/base/response/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-common-server/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-common-server/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-eureka-server/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-eureka-server/src/main/java/com/terminal/manage/GDEurekaServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-eureka-server/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-eureka-server/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-gateway-server/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-gateway-server/src/main/java/com/terminal/manage/GDGateWayServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-gateway-server/src/main/java/com/terminal/manage/gateway/Gateway.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-gateway-server/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-gateway-server/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-system-server/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-system-server/src/main/java/com/terminal/manage/GDSystemServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-system-server/src/main/java/com/terminal/manage/feign/UserFeignService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-system-server/src/main/java/com/terminal/manage/mapper/MenuMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/mapper/MenuMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-system-server/src/main/java/com/terminal/manage/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-system-server/src/main/java/com/terminal/manage/model/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/model/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-system-server/src/main/java/com/terminal/manage/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-system-server/src/main/java/com/terminal/manage/services/MenuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/MenuService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-system-server/src/main/java/com/terminal/manage/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-system-server/src/main/java/com/terminal/manage/services/impl/MenuServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/impl/MenuServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-system-server/src/main/java/com/terminal/manage/services/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-system-server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-system-server/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-web-server/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-web-server/src/main/java/com/terminal/manage/GDWebServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-web-server/src/main/java/com/terminal/manage/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-web-server/src/main/java/com/terminal/manage/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-web-server/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/terminal-web-server/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/GDTerminalApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/GDTerminalApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/base/config/ConfigModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/base/config/ConfigModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/base/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/base/config/RedisConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/base/enums/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/base/enums/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/base/response/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/base/response/Response.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/mapper/MenuMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/mapper/MenuMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/model/Base.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/model/Base.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/model/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/model/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/MenuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/MenuService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/impl/MenuServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/impl/MenuServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/terminal/manage/SpringbootDemoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/terminal/manage/SpringbootDemoApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
@@ -65,17 +60,39 @@
       </map>
     </option>
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\Users\TAO\.m2\repository" />
+        <option name="userSettingsFile" value="C:\Users\TAO\.m2\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="2BfqyLtqltsamwotAb9phrgD1oA" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$MAVEN_REPOSITORY$/tk/mybatis/mapper-core/1.1.3/mapper-core-1.1.3.jar" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
   </component>
   <component name="RunManager">
     <configuration name="GDTerminalApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
@@ -87,6 +104,10 @@
         </pattern>
       </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.terminal.manage.GDTerminalApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -105,11 +126,39 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1657307742029</updated>
-      <workItem from="1657307743322" duration="137000" />
+      <workItem from="1657307743322" duration="184000" />
+      <workItem from="1657341078922" duration="7592000" />
+      <workItem from="1657425308544" duration="15015000" />
+      <workItem from="1657543358317" duration="3938000" />
+      <workItem from="1657547591002" duration="19000" />
+      <workItem from="1657609639197" duration="1944000" />
+      <workItem from="1657772642764" duration="27934000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="java.util.HashMap$Node" memberName="value" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>
