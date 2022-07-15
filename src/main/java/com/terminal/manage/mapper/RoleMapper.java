@@ -1,5 +1,6 @@
 package com.terminal.manage.mapper;
 
+
 import com.terminal.manage.base.mapper.BaseMapper;
 import com.terminal.manage.model.Role;
 import org.apache.ibatis.annotations.Mapper;

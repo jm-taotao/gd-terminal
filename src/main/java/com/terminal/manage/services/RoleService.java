@@ -20,5 +20,5 @@ public interface RoleService {
     Optional<PageInfo<Role>> pageRoleList(Integer page, Integer pageSize, Role role);
 
     Optional<Role> getRoleById(Long roleId);
-    
+
 }
