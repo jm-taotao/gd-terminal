@@ -44,6 +44,9 @@ public class Menu extends Base implements Serializable {
     @ApiModelProperty("菜单地址")
     private String url;
 
+    @ApiModelProperty("菜单等级")
+    private Integer level;
+
 //    @ApiModelProperty(name = "type",notes = "类型")
 //    private Integer type;
 
@@ -147,5 +150,13 @@ public class Menu extends Base implements Serializable {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 }

@@ -2,6 +2,7 @@ package com.terminal.manage.services;
 
 import com.terminal.manage.model.Menu;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,5 +61,11 @@ public interface MenuService {
      * @return MenuTree
      */
     Optional<List<Menu>>  getMenuTree(Menu menu);
+
+    /**
+     * Get all Menu to together Tree
+     * @return MenuTree
+     */
+    Optional<List<HashMap<String,Object>>>  getMenuTreeForLabel(Menu menu);
 
 }

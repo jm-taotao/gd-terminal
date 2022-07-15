@@ -2,6 +2,7 @@ package com.terminal.manage.mapper;
 
 import com.terminal.manage.base.mapper.BaseMapper;
 import com.terminal.manage.model.Menu;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -9,6 +10,7 @@ import org.apache.ibatis.annotations.Update;
  * @author Jyt
  * @date 2021/9/27
  */
+@Mapper
 public interface MenuMapper extends BaseMapper<Menu> {
 
     @Update("update terminal_menu set sno=sno-1 where sno > #{start} and sno <= #{end}")

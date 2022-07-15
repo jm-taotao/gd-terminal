@@ -14,6 +14,7 @@ public enum Constants {
     USER_PASSWORD_ISEMPTY("10005","用户密码不能为空"),
     USER_EXIST("10006","用户名已存在"),
     MENU_EXIST("10007","菜单已存在"),
+    MENU_EXIST_CHILDREN("10007","菜单存在子菜单,暂无法修改父级菜单"),
     ;
 
     public final String code;

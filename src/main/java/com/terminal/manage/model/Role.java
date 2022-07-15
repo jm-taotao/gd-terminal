@@ -16,10 +16,10 @@ public class Role extends Base implements Serializable {
     @Id
     @Column(insertable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ApiModelProperty("菜单id")
+    @ApiModelProperty("角色id")
     private Long id;
 
-    @ApiModelProperty("菜单名称")
+    @ApiModelProperty("角色名称")
     private String name;
 
     public Long getId() {

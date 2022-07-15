@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService {
         if (StringUtils.isEmpty(user.getPassword())){
             throw new BizException(Constants.USER_PASSWORD_ISEMPTY);
         }
-        user.setPassword(MD5.create().digestHex(user.getPassword()).toLowerCase());
+        user.setPassword(MD5.create().digestHex(user.getPassword()).toUpperCase());
         Boolean flag = userMapper.insertSelective(user) > 0;
         return Optional.of(flag);
     }
@@ -125,6 +125,9 @@ public class UserServiceImpl implements UserService {
         }
         if (!StringUtils.isEmpty(user.getLoginName())){
             criteria.andLike("loginName","%"+user.getLoginName()+"%");
+        }
+        if (!StringUtils.isEmpty(user.getIsDeleted())){
+            criteria.andEqualTo("isDeleted", user.getIsDeleted());
         }
 //        DateTimeFormatter dft = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         if (!StringUtils.isEmpty(user.getStart())){

@@ -1,5 +1,6 @@
 package com.terminal.manage.services.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.terminal.manage.base.enums.Constants;
 import com.terminal.manage.base.enums.IsDeleted;
 import com.terminal.manage.base.excption.BizException;
@@ -7,15 +8,15 @@ import com.terminal.manage.mapper.MenuMapper;
 import com.terminal.manage.model.Menu;
 import com.terminal.manage.services.MenuService;
 import org.apache.ibatis.session.RowBounds;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
-import tk.mybatis.mapper.entity.EntityColumn;
 import tk.mybatis.mapper.entity.Example;
 
-import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -30,6 +31,9 @@ import static java.util.stream.Collectors.groupingBy;
 @Service
 public class MenuServiceImpl implements MenuService {
 
+
+    private final Logger log = LoggerFactory.getLogger(MenuService.class);
+
     @Autowired
     private MenuMapper menuMapper;
 
@@ -41,7 +45,6 @@ public class MenuServiceImpl implements MenuService {
                 .andLike("url","%"+menu.getUrl()+"%")
                 .andEqualTo("isDeleted", IsDeleted.NO.code)
                 .andLike("name","%"+menu.getName()+"%");
-
         List<Menu> menuList = menuMapper.selectByExampleAndRowBounds(example, new RowBounds(pageStart, pageSize));
         if (CollectionUtils.isEmpty(menuList)){
             return Optional.of(new ArrayList<>());
@@ -90,6 +93,17 @@ public class MenuServiceImpl implements MenuService {
                 throw new BizException(Constants.MENU_EXIST);
             }
         }
+        example.clear();
+        if (!StringUtils.isEmpty(menu.getPid())){
+            criteria.andEqualTo("id",menu.getId());
+            Menu menuOld = menuMapper.selectOneByExample(example);
+            example.clear();
+            example.and().andEqualTo("pid",menu.getId());
+            int count = menuMapper.selectCountByExample(example);
+            if (Objects.nonNull(menuOld) && !menu.getPid().equals(menuOld.getPid()) && count > 0){
+                throw new BizException(Constants.MENU_EXIST_CHILDREN);
+            }
+        }
         Menu menuOld = menuMapper.selectByPrimaryKey(menu.getId());
         //后移
         if (menu.getSno() > menuOld.getSno()){
@@ -107,7 +121,7 @@ public class MenuServiceImpl implements MenuService {
     public Optional<Boolean> delMenuById(Long menuId) {
         Menu menu = new Menu();
         menu.setId(menuId);
-        menu.setIsDeleted("YES");
+        menu.setIsDeleted(IsDeleted.YES.code);
         menu.setUpdateTime(LocalDateTime.now());
 
         Example example = new Example(Menu.class);
@@ -125,6 +139,11 @@ public class MenuServiceImpl implements MenuService {
         if (!StringUtils.isEmpty(menu.getName())){
             criteria.andLike("name","%" + menu.getName() + "%");
         }
+        if (!StringUtils.isEmpty(menu.getIsDeleted())){
+            criteria.andEqualTo("isDeleted", menu.getIsDeleted());
+        }else {
+            criteria.andEqualTo("isDeleted", IsDeleted.NO.code);
+        }
         example.orderBy("sno");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         List<Menu> menuList = menuMapper.selectByExample(example).stream().peek(v->{
@@ -132,7 +151,7 @@ public class MenuServiceImpl implements MenuService {
                 v.setCreateTimeStr(dtf.format(v.getCreateTime()));
             }
             if (Objects.nonNull(v.getUpdateTime())){
-                v.setCreateTimeStr(dtf.format(v.getUpdateTime()));
+                v.setUpdateTimeStr(dtf.format(v.getUpdateTime()));
             }
         }).collect(Collectors.toList());
         Map<Long, List<Menu>> menuMap = menuList.stream().collect(groupingBy(Menu::getPid));
@@ -144,6 +163,21 @@ public class MenuServiceImpl implements MenuService {
         List<Menu> parentMenus = menuMap.get(min.getAsLong());
         getChildren(parentMenus,menuMap,menuNameMap);
         return Optional.of(parentMenus);
+    }
+
+    @Override
+    public Optional<List<HashMap<String, Object>>> getMenuTreeForLabel(Menu menu) {
+        Example example = new Example(Menu.class,false,false);
+        example.orderBy("sno");
+        List<Menu> menuList = menuMapper.selectByExample(example);
+        Map<Long, List<Menu>> menuMap = menuList.stream().collect(groupingBy(Menu::getPid));
+        if (CollectionUtils.isEmpty(menuMap)){
+            Optional.empty();
+        }
+        OptionalLong min = menuMap.keySet().stream().mapToLong(Long::longValue).min();
+        List<Menu> parentMenus = menuMap.get(min.getAsLong());
+        List<HashMap<String, Object>> menus = getChildrenForLabel(parentMenus, menuMap);
+        return Optional.of(menus);
     }
 
     private void getChildren(List<Menu> parentMenus,Map<Long, List<Menu>> menuMap,Map<Long, List<Menu>> menuNameMap){
@@ -160,5 +194,24 @@ public class MenuServiceImpl implements MenuService {
                 v.setChildren(null);
             }
         });
+    }
+
+    private List<HashMap<String, Object>> getChildrenForLabel(List<Menu> parentMenus,Map<Long, List<Menu>> menuMap){
+        List<HashMap<String,Object>> result = new ArrayList<>();
+        parentMenus.forEach(v->{
+            HashMap<String,Object> hashMap = new HashMap<>();
+            if (menuMap.containsKey(v.getId())){
+                hashMap.put("value",v.getId());
+                hashMap.put("label",v.getName());
+                hashMap.put("children",getChildrenForLabel(menuMap.get(v.getId()),menuMap));
+            }else {
+                hashMap.put("value",v.getId());
+                hashMap.put("label",v.getName());
+//                children.sort(Comparator.comparing(HashMap::values));
+                hashMap.put("children",null);
+            }
+            result.add(hashMap);
+        });
+        return result;
     }
 }

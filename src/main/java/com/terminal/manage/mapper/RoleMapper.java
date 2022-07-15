@@ -1,13 +1,13 @@
 package com.terminal.manage.mapper;
 
 import com.terminal.manage.base.mapper.BaseMapper;
-import com.terminal.manage.model.User;
+import com.terminal.manage.model.Role;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * @author Jyt
- * @date 2021/9/26
+ * @author TAO
+ * @date 2022/7/16 / 2:11
  */
 @Mapper
-public interface UserMapper extends BaseMapper<User> {
+public interface RoleMapper extends BaseMapper<Role> {
 }
