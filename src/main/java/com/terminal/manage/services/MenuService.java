@@ -66,6 +66,9 @@ public interface MenuService {
      * Get all Menu to together Tree
      * @return MenuTree
      */
-    Optional<List<HashMap<String,Object>>>  getMenuTreeForLabel(Menu menu);
+    Optional<List<HashMap<String,Object>>>  getMenuTreeForLabelAndValue(Menu menu);
+
+
+    Optional<List<HashMap<String,Object>>>  getMenuTreeForLabelAndID();
 
 }

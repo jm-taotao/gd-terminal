@@ -1,14 +1,14 @@
 package com.terminal.manage.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+@ApiModel("角色信息")
+@Table(name = "terminal_role")
 public class Role extends Base implements Serializable {
 
     private static final long serialVersionUID = -3454221647946910355L;

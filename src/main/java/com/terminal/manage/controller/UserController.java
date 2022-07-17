@@ -21,7 +21,6 @@ import java.util.Optional;
  */
 @Api("用户管理")
 @RestController
-@CrossOrigin
 @RequestMapping("/user/")
 public class UserController {
 
@@ -73,9 +72,9 @@ public class UserController {
     }
 
     @RequestMapping("del")
-    public Response<Boolean> delUserById(Long userId){
+    public Response<Boolean> delUserById(Long id){
         return Response.doResponse(()->{
-            Optional<Boolean> optionalBoolean = userService.delUserById(userId);
+            Optional<Boolean> optionalBoolean = userService.delUserById(id);
             return optionalBoolean.orElse(false);
         });
     }

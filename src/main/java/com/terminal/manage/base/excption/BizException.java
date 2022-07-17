@@ -20,6 +20,12 @@ public class BizException extends RuntimeException{
 
     public BizException(String message) {
         super(message);
+        this.msg = message;
+    }
+    public BizException(String code,String message) {
+        super(message);
+        this.code = code;
+        this.msg = message;
     }
 
     public BizException(Constants constants) {
@@ -28,17 +34,6 @@ public class BizException extends RuntimeException{
         this.msg = constants.msg;
     }
 
-    public BizException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public BizException(Throwable cause) {
-        super(cause);
-    }
-
-    protected BizException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 
     public String getCode() {
         return code;

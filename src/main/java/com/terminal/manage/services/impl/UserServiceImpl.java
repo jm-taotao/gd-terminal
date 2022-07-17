@@ -9,6 +9,7 @@ import com.terminal.manage.base.excption.BizException;
 import com.terminal.manage.mapper.UserMapper;
 import com.terminal.manage.model.User;
 import com.terminal.manage.services.UserService;
+import com.terminal.manage.tool.DataUtils;
 import javafx.scene.input.DataFormat;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.tomcat.jni.Local;
@@ -52,7 +53,8 @@ public class UserServiceImpl implements UserService {
         if (count<=0){
             throw  new BizException(Constants.LOGIN_FAILED_NOT_EXIST);
         }
-        criteria.andEqualTo("password", MD5.create().digestHex(password).toUpperCase());
+        criteria.andEqualTo("isDeleted",IsDeleted.NO.code)
+                .andEqualTo("password", MD5.create().digestHex(password).toUpperCase());
         User user = userMapper.selectOneByExample(example);
         if (Objects.isNull(user)){
             throw  new BizException(Constants.LOGIN_FAILED_PASSWORD_MISTAKE);
@@ -129,24 +131,14 @@ public class UserServiceImpl implements UserService {
         if (!StringUtils.isEmpty(user.getIsDeleted())){
             criteria.andEqualTo("isDeleted", user.getIsDeleted());
         }
-//        DateTimeFormatter dft = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         if (!StringUtils.isEmpty(user.getStart())){
             criteria.andGreaterThanOrEqualTo("createTime",user.getStart());
         }
         if (!StringUtils.isEmpty(user.getEnd())){
             criteria.andLessThanOrEqualTo("createTime",user.getEnd());
         }
-
-//        criteria.andEqualTo("isDeleted", IsDeleted.NO.code);
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        List<User> users = userMapper.selectByExampleAndRowBounds(example,new RowBounds(page*pageSize,pageSize)).stream().peek(v->{
-            if (Objects.nonNull(v.getCreateTime())){
-                v.setCreateTimeStr(dtf.format(v.getCreateTime()));
-            }
-            if (Objects.nonNull(v.getUpdateTime())){
-                v.setUpdateTimeStr(dtf.format(v.getUpdateTime()));
-            }
-        }).collect(Collectors.toList());
+        List<User> users = userMapper.selectByExampleAndRowBounds(example,new RowBounds(page*pageSize,pageSize));
+        DataUtils.formatterDateForList(users);
         int count = userMapper.selectCountByExample(example);
         PageInfo<User> userPageInfo = new PageInfo<>(users);
         userPageInfo.setTotal(count);

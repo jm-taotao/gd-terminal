@@ -10,7 +10,6 @@ import org.apache.ibatis.annotations.Update;
  * @author Jyt
  * @date 2021/9/27
  */
-@Mapper
 public interface MenuMapper extends BaseMapper<Menu> {
 
     @Update("update terminal_menu set sno=sno-1 where sno > #{start} and sno <= #{end}")

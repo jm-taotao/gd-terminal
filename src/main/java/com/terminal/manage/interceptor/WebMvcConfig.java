@@ -38,7 +38,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class WebMvcConfig extends WebMvcConfigurationSupport {
+public class WebMvcConfig implements WebMvcConfigurer  {
 
     private final Logger log = LoggerFactory.getLogger(Interceptor.class);
 
@@ -47,238 +47,88 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     public WebMvcConfig() {
         super();
-        log.info("初始化配置");
+        log.info("***************初始化拦截器配置***************");
     }
 
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) {
-        super.setApplicationContext(applicationContext);
+    public void configurePathMatch(PathMatchConfigurer configurer) {
     }
 
     @Override
-    public void setServletContext(ServletContext servletContext) {
-        super.setServletContext(servletContext);
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
     }
 
     @Override
-    public RequestMappingHandlerMapping requestMappingHandlerMapping(ContentNegotiationManager contentNegotiationManager, FormattingConversionService conversionService, ResourceUrlProvider resourceUrlProvider) {
-        return super.requestMappingHandlerMapping(contentNegotiationManager, conversionService, resourceUrlProvider);
+    public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
     }
 
     @Override
-    protected RequestMappingHandlerMapping createRequestMappingHandlerMapping() {
-        return super.createRequestMappingHandlerMapping();
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
     }
 
     @Override
-    protected void addInterceptors(InterceptorRegistry registry) {
-        log.info("注册拦截器...............");
+    public void addFormatters(FormatterRegistry registry) {
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        log.info("***************配置拦截器***************");
         registry.addInterceptor(interceptor).excludePathPatterns("/login");
-        super.addInterceptors(registry);
     }
 
     @Override
-    protected PathMatchConfigurer getPathMatchConfigurer() {
-        return super.getPathMatchConfigurer();
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
     }
 
     @Override
-    protected void configurePathMatch(PathMatchConfigurer configurer) {
-        super.configurePathMatch(configurer);
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+//                .allowedOrigins("127.0.0.1","localhost")
+                .allowedOrigins("*")
+                .allowCredentials(true)
+                .allowedHeaders("*")
+                .allowedMethods("*");
     }
 
     @Override
-    public PathMatcher mvcPathMatcher() {
-        return super.mvcPathMatcher();
+    public void addViewControllers(ViewControllerRegistry registry) {
     }
 
     @Override
-    public UrlPathHelper mvcUrlPathHelper() {
-        return super.mvcUrlPathHelper();
+    public void configureViewResolvers(ViewResolverRegistry registry) {
     }
 
     @Override
-    public ContentNegotiationManager mvcContentNegotiationManager() {
-        return super.mvcContentNegotiationManager();
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
     }
 
     @Override
-    protected Map<String, MediaType> getDefaultMediaTypes() {
-        return super.getDefaultMediaTypes();
+    public void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> handlers) {
     }
 
     @Override
-    protected void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-        super.configureContentNegotiation(configurer);
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
     }
 
     @Override
-    public HandlerMapping viewControllerHandlerMapping(PathMatcher pathMatcher, UrlPathHelper urlPathHelper, FormattingConversionService conversionService, ResourceUrlProvider resourceUrlProvider) {
-        return super.viewControllerHandlerMapping(pathMatcher, urlPathHelper, conversionService, resourceUrlProvider);
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
     }
 
     @Override
-    protected void addViewControllers(ViewControllerRegistry registry) {
-        super.addViewControllers(registry);
+    public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
     }
 
     @Override
-    public BeanNameUrlHandlerMapping beanNameHandlerMapping(FormattingConversionService conversionService, ResourceUrlProvider resourceUrlProvider) {
-        return super.beanNameHandlerMapping(conversionService, resourceUrlProvider);
+    public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
     }
 
     @Override
-    public RouterFunctionMapping routerFunctionMapping(FormattingConversionService conversionService, ResourceUrlProvider resourceUrlProvider) {
-        return super.routerFunctionMapping(conversionService, resourceUrlProvider);
+    public Validator getValidator() {
+        return WebMvcConfigurer.super.getValidator();
     }
 
     @Override
-    public HandlerMapping resourceHandlerMapping(UrlPathHelper urlPathHelper, PathMatcher pathMatcher, ContentNegotiationManager contentNegotiationManager, FormattingConversionService conversionService, ResourceUrlProvider resourceUrlProvider) {
-        return super.resourceHandlerMapping(urlPathHelper, pathMatcher, contentNegotiationManager, conversionService, resourceUrlProvider);
-    }
-
-    @Override
-    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
-        super.addResourceHandlers(registry);
-    }
-
-    @Override
-    public ResourceUrlProvider mvcResourceUrlProvider() {
-        return super.mvcResourceUrlProvider();
-    }
-
-    @Override
-    public HandlerMapping defaultServletHandlerMapping() {
-        return super.defaultServletHandlerMapping();
-    }
-
-    @Override
-    protected void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        super.configureDefaultServletHandling(configurer);
-    }
-
-    @Override
-    public RequestMappingHandlerAdapter requestMappingHandlerAdapter(ContentNegotiationManager contentNegotiationManager, FormattingConversionService conversionService, Validator validator) {
-        return super.requestMappingHandlerAdapter(contentNegotiationManager, conversionService, validator);
-    }
-
-    @Override
-    protected RequestMappingHandlerAdapter createRequestMappingHandlerAdapter() {
-        return super.createRequestMappingHandlerAdapter();
-    }
-
-    @Override
-    public HandlerFunctionAdapter handlerFunctionAdapter() {
-        return super.handlerFunctionAdapter();
-    }
-
-    @Override
-    protected ConfigurableWebBindingInitializer getConfigurableWebBindingInitializer(FormattingConversionService mvcConversionService, Validator mvcValidator) {
-        return super.getConfigurableWebBindingInitializer(mvcConversionService, mvcValidator);
-    }
-
-    @Override
-    protected MessageCodesResolver getMessageCodesResolver() {
-        return super.getMessageCodesResolver();
-    }
-
-    @Override
-    protected void configureAsyncSupport(AsyncSupportConfigurer configurer) {
-        super.configureAsyncSupport(configurer);
-    }
-
-    @Override
-    public FormattingConversionService mvcConversionService() {
-        return super.mvcConversionService();
-    }
-
-    @Override
-    protected void addFormatters(FormatterRegistry registry) {
-        super.addFormatters(registry);
-    }
-
-    @Override
-    public Validator mvcValidator() {
-        return super.mvcValidator();
-    }
-
-    @Override
-    protected Validator getValidator() {
-        return super.getValidator();
-    }
-
-    @Override
-    protected void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-        super.addArgumentResolvers(argumentResolvers);
-    }
-
-    @Override
-    protected void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> returnValueHandlers) {
-        super.addReturnValueHandlers(returnValueHandlers);
-    }
-
-    @Override
-    protected void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        super.configureMessageConverters(converters);
-    }
-
-    @Override
-    protected void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-        super.extendMessageConverters(converters);
-    }
-
-    @Override
-    public CompositeUriComponentsContributor mvcUriComponentsContributor(FormattingConversionService conversionService, RequestMappingHandlerAdapter requestMappingHandlerAdapter) {
-        return super.mvcUriComponentsContributor(conversionService, requestMappingHandlerAdapter);
-    }
-
-    @Override
-    public HttpRequestHandlerAdapter httpRequestHandlerAdapter() {
-        return super.httpRequestHandlerAdapter();
-    }
-
-    @Override
-    public SimpleControllerHandlerAdapter simpleControllerHandlerAdapter() {
-        return super.simpleControllerHandlerAdapter();
-    }
-
-    @Override
-    public HandlerExceptionResolver handlerExceptionResolver(ContentNegotiationManager contentNegotiationManager) {
-        return super.handlerExceptionResolver(contentNegotiationManager);
-    }
-
-    @Override
-    protected void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
-        super.configureHandlerExceptionResolvers(exceptionResolvers);
-    }
-
-    @Override
-    protected void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
-        super.extendHandlerExceptionResolvers(exceptionResolvers);
-    }
-
-    @Override
-    protected ExceptionHandlerExceptionResolver createExceptionHandlerExceptionResolver() {
-        return super.createExceptionHandlerExceptionResolver();
-    }
-
-    @Override
-    public ViewResolver mvcViewResolver(ContentNegotiationManager contentNegotiationManager) {
-        return super.mvcViewResolver(contentNegotiationManager);
-    }
-
-    @Override
-    protected void configureViewResolvers(ViewResolverRegistry registry) {
-        super.configureViewResolvers(registry);
-    }
-
-    @Override
-    protected void addCorsMappings(CorsRegistry registry) {
-        super.addCorsMappings(registry);
-    }
-
-    @Override
-    public HandlerMappingIntrospector mvcHandlerMappingIntrospector() {
-        return super.mvcHandlerMappingIntrospector();
+    public MessageCodesResolver getMessageCodesResolver() {
+        return WebMvcConfigurer.super.getMessageCodesResolver();
     }
 }

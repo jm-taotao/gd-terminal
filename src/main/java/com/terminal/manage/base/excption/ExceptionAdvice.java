@@ -16,6 +16,7 @@ public class ExceptionAdvice {
     public HashMap<String,Object> handlerBiz(BizException biz){
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("code",biz.getCode());
+        hashMap.put("success",false);
         hashMap.put("msg",biz.getMsg());
         return hashMap;
     }
@@ -24,6 +25,7 @@ public class ExceptionAdvice {
     public HashMap<String,Object> handlerBiz(Exception biz){
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("code","50000");
+        hashMap.put("success",false);
         hashMap.put("msg",biz.getMessage());
         return hashMap;
     }

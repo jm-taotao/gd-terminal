@@ -24,7 +24,6 @@ import java.util.Optional;
  * @author Jyt
  * @date 2021/9/30
  */
-@CrossOrigin
 @RestController
 @RequestMapping("/menu/")
 public class MenuController {
@@ -56,9 +55,9 @@ public class MenuController {
 
 
     @SuppressWarnings("unchecked")
-    @RequestMapping("treeForLabel")
+    @RequestMapping("treeForLabelAndValue")
     @ApiOperation(value = "获取树形菜单", notes = "获取树形菜单",response = User.class,httpMethod = "POST")
-    public Response<List<HashMap<String, Object>>> menuTreeForLabel(Menu menu){
+    public Response<List<HashMap<String, Object>>> getMenuTreeForLabelAndValue(Menu menu){
 
         String menuKey = ConfigModel.KEY_PREFIX+"menuForLabel";
         List<Menu> arrays = (List<Menu>) redisTemplate.opsForValue().get(menuKey);
@@ -66,7 +65,26 @@ public class MenuController {
             Response.doResponse(arrays);
         }
         return Response.doResponse(()->{
-            Optional<List<HashMap<String, Object>>> menuTree = menuService.getMenuTreeForLabel(menu);
+            Optional<List<HashMap<String, Object>>> menuTree = menuService.getMenuTreeForLabelAndValue(menu);
+            menuTree.ifPresent(menuList -> redisTemplate.opsForValue().set(menuKey, menuList));
+            return menuTree.orElseThrow(()->{
+                return new BizException(Constants.GET_MENU_FAILED);
+            });
+        });
+    }
+
+    @SuppressWarnings("unchecked")
+    @RequestMapping("treeForLabelAndID")
+    @ApiOperation(value = "获取树形菜单", notes = "获取树形菜单",response = User.class,httpMethod = "POST")
+    public Response<List<HashMap<String, Object>>> getMenuTreeForLabelAndID(){
+
+        String menuKey = ConfigModel.KEY_PREFIX+"menuForLabelID";
+        List<Menu> arrays = (List<Menu>) redisTemplate.opsForValue().get(menuKey);
+        if (!CollectionUtils.isEmpty(arrays)){
+            Response.doResponse(arrays);
+        }
+        return Response.doResponse(()->{
+            Optional<List<HashMap<String, Object>>> menuTree = menuService.getMenuTreeForLabelAndID();
             menuTree.ifPresent(menuList -> redisTemplate.opsForValue().set(menuKey, menuList));
             return menuTree.orElseThrow(()->{
                 return new BizException(Constants.GET_MENU_FAILED);
@@ -102,9 +120,9 @@ public class MenuController {
 
 
     @RequestMapping("del")
-    public Response<Boolean> delete(Long menuId){
+    public Response<Boolean> delete(Long id){
         return Response.doResponse(()->{
-            Optional<Boolean> optionalBoolean = menuService.delMenuById(menuId);
+            Optional<Boolean> optionalBoolean = menuService.delMenuById(id);
             return optionalBoolean.orElse(false);
         });
     }

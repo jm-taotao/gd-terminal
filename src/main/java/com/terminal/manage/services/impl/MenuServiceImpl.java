@@ -7,6 +7,7 @@ import com.terminal.manage.base.excption.BizException;
 import com.terminal.manage.mapper.MenuMapper;
 import com.terminal.manage.model.Menu;
 import com.terminal.manage.services.MenuService;
+import com.terminal.manage.tool.DataUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -146,14 +147,8 @@ public class MenuServiceImpl implements MenuService {
         }
         example.orderBy("sno");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        List<Menu> menuList = menuMapper.selectByExample(example).stream().peek(v->{
-            if (Objects.nonNull(v.getCreateTime())){
-                v.setCreateTimeStr(dtf.format(v.getCreateTime()));
-            }
-            if (Objects.nonNull(v.getUpdateTime())){
-                v.setUpdateTimeStr(dtf.format(v.getUpdateTime()));
-            }
-        }).collect(Collectors.toList());
+        List<Menu> menuList = menuMapper.selectByExample(example);
+        DataUtils.formatterDateForList(menuList);
         Map<Long, List<Menu>> menuMap = menuList.stream().collect(groupingBy(Menu::getPid));
         if (CollectionUtils.isEmpty(menuMap)){
             return Optional.empty();
@@ -166,7 +161,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public Optional<List<HashMap<String, Object>>> getMenuTreeForLabel(Menu menu) {
+    public Optional<List<HashMap<String, Object>>> getMenuTreeForLabelAndValue(Menu menu) {
         Example example = new Example(Menu.class,false,false);
         example.orderBy("sno");
         List<Menu> menuList = menuMapper.selectByExample(example);
@@ -178,6 +173,41 @@ public class MenuServiceImpl implements MenuService {
         List<Menu> parentMenus = menuMap.get(min.getAsLong());
         List<HashMap<String, Object>> menus = getChildrenForLabel(parentMenus, menuMap);
         return Optional.of(menus);
+    }
+
+    @Override
+    public Optional<List<HashMap<String, Object>>> getMenuTreeForLabelAndID() {
+        Example example = new Example(Menu.class,false,false);
+        example.and().andEqualTo("isDeleted", IsDeleted.NO.code);
+        example.orderBy("sno");
+        List<Menu> menuList = menuMapper.selectByExample(example);
+        Map<Long, List<Menu>> menuMap = menuList.stream().collect(groupingBy(Menu::getPid));
+        if (CollectionUtils.isEmpty(menuMap)){
+            return Optional.empty();
+        }
+        OptionalLong min = menuMap.keySet().stream().mapToLong(Long::longValue).min();
+        List<Menu> parentMenus = menuMap.get(min.getAsLong());
+        List<HashMap<String, Object>> menus = getChildrenForLabelAndID(parentMenus, menuMap);
+        return Optional.of(menus);
+    }
+
+    private List<HashMap<String, Object>> getChildrenForLabelAndID(List<Menu> parentMenus, Map<Long, List<Menu>> menuMap) {
+        List<HashMap<String,Object>> result = new ArrayList<>();
+        parentMenus.forEach(v->{
+            HashMap<String,Object> hashMap = new HashMap<>();
+            if (menuMap.containsKey(v.getId())){
+                hashMap.put("id",v.getId());
+                hashMap.put("label",v.getName());
+                hashMap.put("children",getChildrenForLabel(menuMap.get(v.getId()),menuMap));
+            }else {
+                hashMap.put("id",v.getId());
+                hashMap.put("label",v.getName());
+//                children.sort(Comparator.comparing(HashMap::values));
+                hashMap.put("children",null);
+            }
+            result.add(hashMap);
+        });
+        return result;
     }
 
     private void getChildren(List<Menu> parentMenus,Map<Long, List<Menu>> menuMap,Map<Long, List<Menu>> menuNameMap){
