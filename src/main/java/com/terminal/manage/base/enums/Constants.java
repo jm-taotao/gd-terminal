@@ -17,6 +17,7 @@ public enum Constants {
     MENU_EXIST_CHILDREN("10008","菜单存在子菜单,暂无法修改父级菜单"),
     ROLE_EXIST("10009","角色已存在"),
     LOGIN_EXPIRE("10010","登录已过期"),
+    PRODUCT_EXIST("10011","商品已存在"),
     ;
 
     public final String code;

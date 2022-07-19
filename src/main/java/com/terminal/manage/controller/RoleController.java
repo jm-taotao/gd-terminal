@@ -3,18 +3,20 @@ package com.terminal.manage.controller;
 import com.github.pagehelper.PageInfo;
 import com.terminal.manage.base.response.Response;
 import com.terminal.manage.model.Role;
+import com.terminal.manage.services.MenuService;
 import com.terminal.manage.services.RoleService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author TAO
@@ -26,6 +28,9 @@ public class RoleController {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private MenuService menuService;
 
     @RequestMapping("list")
     @ApiOperation(value = "角色列表", notes = "角色列表",response = Role.class,httpMethod = "POST")
@@ -89,6 +94,26 @@ public class RoleController {
     public Response<Boolean> removeUserRole(Long userId, List<Long> roleIds){
         return Response.doResponse(()->{
             Optional<Boolean> optionalBoolean = roleService.removeUserRole(userId,roleIds);
+            return optionalBoolean.orElse(false);
+        });
+    }
+
+
+    @RequestMapping("addRoleMenus")
+    public Response<Boolean> addRoleMenus(Long roleId, String menuIdStr){
+        if (StringUtils.isEmpty(menuIdStr)) {
+            return Response.doResponse(false);
+        }
+//        if (!menuIdStr.contains(",")) {
+//            return Response.doResponse(false);
+//        }
+        String[] menuIds = menuIdStr.split(",");
+        if (menuIds.length<=0){
+            return Response.doResponse(false);
+        }
+        List<Long> menuIdList = Arrays.stream(menuIds).map(Long::parseLong).collect(Collectors.toList());
+        return Response.doResponse(()->{
+            Optional<Boolean> optionalBoolean = roleService.addRoleMenu(roleId,menuIdList);
             return optionalBoolean.orElse(false);
         });
     }

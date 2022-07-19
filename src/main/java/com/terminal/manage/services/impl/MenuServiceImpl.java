@@ -198,7 +198,7 @@ public class MenuServiceImpl implements MenuService {
             if (menuMap.containsKey(v.getId())){
                 hashMap.put("id",v.getId());
                 hashMap.put("label",v.getName());
-                hashMap.put("children",getChildrenForLabel(menuMap.get(v.getId()),menuMap));
+                hashMap.put("children",getChildrenForLabelAndID(menuMap.get(v.getId()),menuMap));
             }else {
                 hashMap.put("id",v.getId());
                 hashMap.put("label",v.getName());

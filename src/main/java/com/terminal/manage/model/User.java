@@ -21,6 +21,7 @@ public class User extends Base implements Serializable {
     @Id
     @Column(insertable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty("用户ID")
     private Long id;
 
     @ApiModelProperty(name = "oid",notes = "运营商ID")

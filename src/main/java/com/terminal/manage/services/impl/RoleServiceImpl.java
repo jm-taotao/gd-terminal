@@ -16,6 +16,7 @@ import com.terminal.manage.tool.DataUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
@@ -158,10 +159,16 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Optional<Boolean> addRoleMenu(Long roleId, List<Long> menuIds) {
         if (Objects.isNull(roleId)){
             return Optional.of(false);
         }
+
+        Example example = new Example(RoleMenu.class);
+        example.and().andEqualTo("roleId",roleId);
+        roleMenuMapper.deleteByExample(example);
+
         List<RoleMenu> roleMenus = new ArrayList<>();
         for (Long menuId : menuIds) {
             RoleMenu roleMenu = new RoleMenu();

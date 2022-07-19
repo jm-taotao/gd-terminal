@@ -5,34 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e28fb587-a983-44cf-a025-e7a4fde6f9b9" name="Changes" comment="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/com/terminal/manage/mapper/RoleMapper.java&#10;#&#9;src/main/java/com/terminal/manage/mapper/UserRoleMapper.java&#10;#&#9;src/main/java/com/terminal/manage/model/UserRole.java&#10;#&#9;src/main/java/com/terminal/manage/services/RoleService.java&#10;#&#9;src/main/java/com/terminal/manage/services/impl/RoleServiceImpl.java">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/ErrorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/RoleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/mapper/RoleMenuMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/model/RoleMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/tool/DataUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/tool/Encryption.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/tool/QueryUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/tool/ThreadLocalAdminUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/tool/TokenUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/ProductController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/mapper/ProductMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/model/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/model/ProductType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/ProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/impl/ProductServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/base/enums/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/base/enums/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/base/excption/BizException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/base/excption/BizException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/base/excption/ExceptionAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/base/excption/ExceptionAdvice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/interceptor/Interceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/interceptor/Interceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/interceptor/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/interceptor/WebMvcConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/mapper/MenuMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/mapper/MenuMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/mapper/RoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/mapper/RoleMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/mapper/UserRoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/mapper/UserRoleMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/RoleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/model/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/model/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/model/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/MenuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/MenuService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/RoleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/model/RoleMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/model/RoleMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/impl/MenuServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/impl/MenuServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/impl/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/impl/RoleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/terminal/manage/SpringbootDemoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/terminal/manage/SpringbootDemoApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,6 +95,11 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.terminal.manage.model" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.terminal.manage.controller" />
+      <recent name="com.terminal.manage.services.impl" />
+      <recent name="com.terminal.manage.services" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="GDTerminalApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
@@ -150,7 +142,12 @@
       <workItem from="1657772642764" duration="28211000" />
       <workItem from="1657857204345" duration="31189000" />
       <workItem from="1657947178187" duration="33109000" />
-      <workItem from="1658033635151" duration="19711000" />
+      <workItem from="1658033635151" duration="19826000" />
+      <workItem from="1658113508954" duration="11090000" />
+      <workItem from="1658151590455" duration="957000" />
+      <workItem from="1658163058301" duration="11000" />
+      <workItem from="1658214617901" duration="1424000" />
+      <workItem from="1658244995847" duration="4003000" />
     </task>
     <task id="LOCAL-00001" summary="1.排除多余的依赖&#10;2.新增角色业务">
       <created>1657911817628</created>
@@ -200,7 +197,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/terminal/manage/services/impl/RoleServiceImpl.java</url>
-          <line>81</line>
+          <line>82</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
@@ -214,5 +211,10 @@
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/gd_terminal$GDTerminalApplication.ic" NAME="GDTerminalApplication Coverage Results" MODIFIED="1658248396729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.terminal.manage.*</FILTER>
+    </SUITE>
   </component>
 </project>

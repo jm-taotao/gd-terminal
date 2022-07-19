@@ -21,10 +21,10 @@ public class RoleMenu implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ApiModelProperty("角色id")
+    @ApiModelProperty("角色ID")
     private Long roleId;
 
-    @ApiModelProperty("菜单id")
+    @ApiModelProperty("菜单ID")
     private Long menuId;
 
     public Long getId() {

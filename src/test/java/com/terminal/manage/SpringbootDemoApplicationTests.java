@@ -11,6 +11,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import javax.servlet.Servlet;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
 
 @SpringBootTest
 class SpringbootDemoApplicationTests {
@@ -24,10 +25,6 @@ class SpringbootDemoApplicationTests {
 
     @Test
     void contextLoads() {
-//        Servlet
-//        Optional<List<Menu>> menuTree = menuService.getMenuTree();
-//        menuTree.ifPresent(v->{
-//            System.out.println(JSON.toJSONString(v));
-//        });
+
     }
 }

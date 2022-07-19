@@ -16,7 +16,7 @@ public class Role extends Base implements Serializable {
     @Id
     @Column(insertable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ApiModelProperty("角色id")
+    @ApiModelProperty("角色ID")
     private Long id;
 
     @ApiModelProperty("角色名称")

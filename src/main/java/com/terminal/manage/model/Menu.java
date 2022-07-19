@@ -22,10 +22,10 @@ public class Menu extends Base implements Serializable {
     @Id
     @Column(insertable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ApiModelProperty("菜单id")
+    @ApiModelProperty("菜单ID")
     private Long id;
 
-    @ApiModelProperty("父级菜单id")
+    @ApiModelProperty("父级菜单ID")
     private Long pid;
 
     @ApiModelProperty("父级菜单名称")
