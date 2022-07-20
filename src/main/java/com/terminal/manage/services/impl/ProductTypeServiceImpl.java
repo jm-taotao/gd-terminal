@@ -117,4 +117,10 @@ public class ProductTypeServiceImpl implements ProductTypeService {
         ProductType productType = productTypeMapper.selectByPrimaryKey(productTypeId);
         return Optional.of(productType);
     }
+
+    @Override
+    public Optional<List<ProductType>> getProductTypeList() {
+        List<ProductType> productTypes = productTypeMapper.selectAll();
+        return Optional.of(productTypes);
+    }
 }

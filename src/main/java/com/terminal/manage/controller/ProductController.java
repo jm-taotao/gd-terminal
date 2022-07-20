@@ -3,7 +3,9 @@ package com.terminal.manage.controller;
 import com.github.pagehelper.PageInfo;
 import com.terminal.manage.base.response.Response;
 import com.terminal.manage.model.Product;
+import com.terminal.manage.model.ProductType;
 import com.terminal.manage.services.ProductService;
+import com.terminal.manage.services.ProductTypeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -26,6 +29,9 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private ProductTypeService productTypeService;
+
 
 
     @RequestMapping("list")
@@ -39,6 +45,18 @@ public class ProductController {
         return Response.doResponse(()->{
             Optional<PageInfo<Product>> optionalProducts = productService.pageProductList(page-1, pageSize, product);
             return optionalProducts.orElse(null);
+        });
+    }
+
+    @RequestMapping("productTypeList")
+    @ApiOperation(value = "商品类型列表", notes = "商品类型列表",response = ProductType.class,httpMethod = "POST")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "productType",required = true,paramType = "ProductType")
+    })
+    public Response<List<ProductType>> productTypeList(){
+        return Response.doResponse(()->{
+            Optional<List<ProductType>> optionalProductTypes = productTypeService.getProductTypeList();
+            return optionalProductTypes.orElse(null);
         });
     }
 

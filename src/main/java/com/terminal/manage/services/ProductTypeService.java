@@ -3,6 +3,7 @@ package com.terminal.manage.services;
 import com.github.pagehelper.PageInfo;
 import com.terminal.manage.model.ProductType;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -20,4 +21,6 @@ public interface ProductTypeService {
     Optional<PageInfo<ProductType>> pageProductTypeList(Integer page, Integer pageSize, ProductType productType);
 
     Optional<ProductType> getProductTypeById(Long productTypeId);
+
+    Optional<List<ProductType>> getProductTypeList();
 }

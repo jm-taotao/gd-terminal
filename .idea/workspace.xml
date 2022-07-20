@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e28fb587-a983-44cf-a025-e7a4fde6f9b9" name="Changes" comment="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/com/terminal/manage/mapper/RoleMapper.java&#10;#&#9;src/main/java/com/terminal/manage/mapper/UserRoleMapper.java&#10;#&#9;src/main/java/com/terminal/manage/model/UserRole.java&#10;#&#9;src/main/java/com/terminal/manage/services/RoleService.java&#10;#&#9;src/main/java/com/terminal/manage/services/impl/RoleServiceImpl.java">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/ProductTypeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/mapper/ProductTypeMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/ProductTypeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/impl/ProductTypeServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/base/enums/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/base/enums/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/interceptor/Interceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/interceptor/Interceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/model/ProductType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/model/ProductType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/ProductTypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/ProductTypeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/impl/ProductTypeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/terminal/manage/services/impl/ProductTypeServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +136,8 @@
       <workItem from="1658163058301" duration="11000" />
       <workItem from="1658214617901" duration="1424000" />
       <workItem from="1658244995847" duration="4646000" />
-      <workItem from="1658289752746" duration="1894000" />
+      <workItem from="1658289752746" duration="2082000" />
+      <workItem from="1658320670549" duration="4386000" />
     </task>
     <task id="LOCAL-00001" summary="1.排除多余的依赖&#10;2.新增角色业务">
       <created>1657911817628</created>
@@ -192,16 +189,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/terminal/manage/services/impl/RoleServiceImpl.java</url>
           <line>82</line>
           <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/terminal/manage/controller/ProductTypeController.java</url>
-          <line>59</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/terminal/manage/interceptor/Interceptor.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
