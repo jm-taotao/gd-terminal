@@ -18,6 +18,7 @@ public enum Constants {
     ROLE_EXIST("10009","角色已存在"),
     LOGIN_EXPIRE("10010","登录已过期"),
     PRODUCT_EXIST("10011","商品已存在"),
+    PRODUCT_TYPE_EXIST("10012","商品类型已存在"),
     ;
 
     public final String code;

@@ -2,17 +2,17 @@ package com.terminal.manage.model;
 
 import io.swagger.annotations.ApiModelProperty;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * @author TAO
  * @date 2022/7/20 / 0:37
  */
+@Table(name = "terminal_product_type")
 public class ProductType extends Base implements Serializable {
+
+    private static final long serialVersionUID = -4067207142626556794L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
